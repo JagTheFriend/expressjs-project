@@ -40,6 +40,39 @@ app.post("/addSchool", async (req, res) => {
   }
 });
 
+// GET /listSchools -- List all schools near the given coordinates
+const listSchoolsSchema = z.object({
+  latitude: z.coerce.number(),
+  longitude: z.coerce.number(),
+});
+app.get("/listSchools", async (req, res) => {
+  const parsedData = listSchoolsSchema.safeParse(req.query);
+
+  if (!parsedData.success) {
+    res.status(400).json({ message: "Missing or invalid query" });
+    return;
+  }
+
+  try {
+    const schools = await db.school.findMany({
+      where: {
+        // Expanding the range to look slightly around the input coordinates
+        latitude: {
+          gte: parsedData.data.latitude - 0.01,
+          lte: parsedData.data.latitude + 0.01,
+        },
+        longitude: {
+          gte: parsedData.data.longitude - 0.01,
+          lte: parsedData.data.longitude + 0.01,
+        },
+      },
+    });
+    res.status(200).json(schools);
+  } catch (error) {
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
 app.listen(process.env.PORT, () => {
   console.log(`Example app listening on port ${process.env.PORT}`);
 });
