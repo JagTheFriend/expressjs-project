@@ -10,9 +10,14 @@ datasource db {
 
 // School model
 model School {
-    id        String @id @default(cuid())
+    id        String   @id @default(cuid())
     name      String
     address   String
     latitude  Float
     longitude Float
+    updatedAt DateTime @updatedAt
+
+    // Make sure the name and address are unique for each school
+    // to avoid duplicates.
+    @@unique([name, address])
 }
