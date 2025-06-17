@@ -28,7 +28,13 @@ DATABASE_URL="postgresql://..."
 DIRECT_URL="postgresql://..."
 ```
 
-4. Run the application:
+4. Push database schema:
+
+```bash
+npm run db:push
+```
+
+5. Run the application:
 
 ```bash
 npm run dev
