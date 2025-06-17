@@ -54,3 +54,12 @@ npm run dev
     - Fetches all schools from the database, sorts them based on proximity to the user's location, and returns the sorted list.
   - Sorting Mechanism:
     - Calculate and sort by the geographical distance between the user's coordinates and each school's coordinates.
+
+## Testing
+
+If you want to test the APIs, you can use the Postman collection provided in the `postman_collection.json` file.
+
+Note:
+
+- Remember to set the `BASE_URL` variable to `https://expressjs-project-educase.onrender.com` in the Postman collection.
+- Otherwise, set to `https://localhost:3000` if locally hosted.

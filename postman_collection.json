@@ -1,0 +1,59 @@
+{
+	"info": {
+		"_postman_id": "39a7a255-d48f-4719-a73e-de6ab031c30d",
+		"name": "Educase",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "45960309"
+	},
+	"item": [
+		{
+			"name": "Add School",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Nice Name\",\r\n  \"address\": \"Bhubaneswar, Odisha, India\",\r\n  \"latitude\": 40.7128,\r\n  \"longitude\": -74.0060\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{BASE_URL}}/addSchool"
+			},
+			"response": []
+		},
+		{
+			"name": "List Schools",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Nice Name\",\r\n  \"address\": \"Bhubaneswar, Odisha, India\",\r\n  \"latitude\": 40.7128,\r\n  \"longitude\": -74.0060\r\n}"
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/listSchools?latitude=40.7128&longitude=-74.0060",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"listSchools"
+					],
+					"query": [
+						{
+							"key": "latitude",
+							"value": "40.7128"
+						},
+						{
+							"key": "longitude",
+							"value": "-74.0060"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
