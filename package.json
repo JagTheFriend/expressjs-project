@@ -1,0 +1,30 @@
+{
+  "name": "educase-project",
+  "version": "1.0.0",
+  "description": "Develop Node.js APIs for School Management",
+  "private": true,
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/index.js",
+    "postinstall": "prisma generate",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:push": "prisma db push",
+    "db:studio": "prisma studio"
+  },
+  "keywords": [],
+  "author": "JagTheFriend",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.0.3",
+    "prisma": "^6.9.0",
+    "tsx": "^4.20.3",
+    "typescript": "^5.8.3"
+  }
+}
