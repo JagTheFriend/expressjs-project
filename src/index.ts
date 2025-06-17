@@ -2,6 +2,7 @@ import * as dotenv from "dotenv";
 import express from "express";
 import { z } from "zod";
 import { db } from "./lib/db";
+import { haversineDistance } from "./lib/util";
 
 dotenv.config({
   path: ".env",
@@ -54,20 +55,36 @@ app.get("/listSchools", async (req, res) => {
   }
 
   try {
+    // Fetches all schools from the database, sorts them based on proximity to the user's location.
     const schools = await db.school.findMany({
       where: {
-        // Expanding the range to look slightly around the input coordinates
+        // 0.1 is roughly 11.1 km
         latitude: {
-          gte: parsedData.data.latitude - 0.01,
-          lte: parsedData.data.latitude + 0.01,
+          gte: parsedData.data.latitude - 0.1,
+          lte: parsedData.data.latitude + 0.1,
         },
+        // Varies with latitude:
+        // 0.1 is Roughly 11.1 km at equator
+        // Smaller toward the poles
         longitude: {
-          gte: parsedData.data.longitude - 0.01,
-          lte: parsedData.data.longitude + 0.01,
+          gte: parsedData.data.longitude - 0.1,
+          lte: parsedData.data.longitude + 0.1,
         },
       },
     });
-    res.status(200).json(schools);
+    // Sorting Mechanism: Calculate and sort by the geographical distance between the user's coordinates and each school's coordinates.
+    const sortedSchools = schools
+      .map((school) => ({
+        ...school,
+        distance: haversineDistance(
+          parsedData.data.latitude,
+          parsedData.data.longitude,
+          school.latitude,
+          school.longitude
+        ),
+      }))
+      .sort((a, b) => a.distance - b.distance);
+    res.status(200).json(sortedSchools);
   } catch (error) {
     res.status(500).json({ message: "Internal server error" });
   }

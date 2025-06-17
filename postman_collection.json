@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"name\": \"Nice Name\",\r\n  \"address\": \"Bhubaneswar, Odisha, India\",\r\n  \"latitude\": 40.7128,\r\n  \"longitude\": -74.0060\r\n}",
+					"raw": "{\r\n  \"name\": \"Amazing\",\r\n  \"address\": \"Bhubaneswar, Odisha, India\",\r\n  \"latitude\": 40.2,\r\n  \"longitude\": -73.8\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -34,7 +34,7 @@
 					"raw": "{\r\n  \"name\": \"Nice Name\",\r\n  \"address\": \"Bhubaneswar, Odisha, India\",\r\n  \"latitude\": 40.7128,\r\n  \"longitude\": -74.0060\r\n}"
 				},
 				"url": {
-					"raw": "{{BASE_URL}}/listSchools?latitude=40.7128&longitude=-74.0060",
+					"raw": "{{BASE_URL}}/listSchools?latitude=40.1&longitude=-73.9",
 					"host": [
 						"{{BASE_URL}}"
 					],
@@ -44,11 +44,11 @@
 					"query": [
 						{
 							"key": "latitude",
-							"value": "40.7128"
+							"value": "40.1"
 						},
 						{
 							"key": "longitude",
-							"value": "-74.0060"
+							"value": "-73.9"
 						}
 					]
 				}
