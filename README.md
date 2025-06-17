@@ -22,7 +22,10 @@ npm install
 ```bash
 PORT=3000
 NODE_ENV=development
-DATABASE_URL="postgres://postgres:..."
+# Connect to Database via connection pooling
+DATABASE_URL="postgresql://..."
+# Direct connection to the database. Used for migrations
+DIRECT_URL="postgresql://..."
 ```
 
 4. Run the application:
